@@ -1,12 +1,20 @@
 {
   "configurations": [
-
     {
       "name": "Launch Chrome",
       "request": "launch",
       "type": "chrome",
       "url": "http://localhost:3000",
-      "webRoot": "${workspaceFolder}",
+      "webRoot": "${workspaceFolder}"
+    },
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "Attach vercel dev",
+      "skipFiles": ["<node_internals>/**"],
+      "port": 9229,
+      "sourceMaps": true,
+      "cwd": "${workspaceRoot}"
     }
   ]
 }

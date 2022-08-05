@@ -1,16 +1,60 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import {
   Divider,
   Form,
   FloatingLabelInput as Input,
   Waves,
 } from "../../components";
+import { useAPI, useForm } from "../../hooks";
 import { classNames } from "../../utils";
+import * as yup from "yup";
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
+  const api = useAPI();
+  const getFormData = useForm();
+
   const handleChangeForm = (login: boolean) => {
     setIsLogin(login);
+  };
+
+  const handleLogin = async (e: FormEvent) => {
+    e.preventDefault();
+    const { data, fields } = getFormData(e.currentTarget as HTMLFormElement);
+
+    const schema = yup.object().shape({
+      login: yup.string().required("Usuário inválido!"),
+      password: yup.string().required("Senha inváida!"),
+    });
+
+    await schema
+      .validate(data)
+      .catch((err: yup.ValidationError) => {
+        const input = fields[err.path || ""];
+        input.setAttribute("isError", "true");
+      })
+      .then(
+        async () => {
+          console.log(await api.post("/api/auth", { type: "login", ...data }));
+        },
+        async () => {}
+      );
+  };
+
+  const handleRegister = async (e: FormEvent) => {
+    e.preventDefault();
+    const { data, fields } = getFormData(e.currentTarget as HTMLFormElement);
+    const { username, email, password, confirm } = data;
+
+    if (password === confirm)
+      console.log(
+        await api.post("/api/auth", {
+          type: "register",
+          username,
+          email,
+          password,
+        })
+      );
   };
 
   return (
@@ -48,9 +92,18 @@ const Auth = () => {
           </span>
         </div>
         {isLogin ? (
-          <Form submitLabel="Sign In" className="font-medium">
-            <Input label="E-mail or Username" />
-            <Input label="Password" errorLabel="dadasdasd" type="password">
+          <Form
+            submitLabel="Sign In"
+            className="font-medium"
+            onSubmit={handleLogin}
+          >
+            <Input label="E-mail or Username" name="login" />
+            <Input
+              label="Password"
+              errorLabel="dadasdasd"
+              type="password"
+              name="password"
+            >
               <div className="flex flex-1 justify-between text-mythril-500/60">
                 <a href="reset-password">Forgot your password?</a>
                 <span
@@ -63,11 +116,20 @@ const Auth = () => {
             </Input>
           </Form>
         ) : (
-          <Form submitLabel="Sign Up" className="font-semibold">
-            <Input label="Username" />
-            <Input label="E-mail" type="email" />
-            <Input label="Password" errorLabel="dadasdasd" type="password" />
-            <Input label="Confirm password" type="password" />
+          <Form
+            submitLabel="Sign Up"
+            className="font-semibold"
+            onSubmit={handleRegister}
+          >
+            <Input label="Username" name="username" />
+            <Input label="E-mail" type="email" name="email" />
+            <Input
+              label="Password"
+              errorLabel="dadasdasd"
+              type="password"
+              name="password"
+            />
+            <Input label="Confirm password" type="password" name="confirm" />
           </Form>
         )}
       </div>

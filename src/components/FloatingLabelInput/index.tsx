@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import InputProps from "./props";
 
 const FloatingLabelInput: React.FC<InputProps> = ({
@@ -7,13 +8,17 @@ const FloatingLabelInput: React.FC<InputProps> = ({
   isError,
   errorLabel,
   type,
+  name,
 }) => {
+  useEffect(() => {}, [isError, errorLabel]);
+
   return (
     <div className="relative z-0 pb-4 mb-1.5">
       <input
         type={type || "text"}
         className="block pt-3 pb-1.5 px-0 w-full text-sm font-medium duration-200 text-mythril-700 bg-transparent border-0 border-b-2 border-mythril-700/50 focus:border-mythril-700 appearance-none outline-none ring-0 peer"
         placeholder={placeholder || " "}
+        name={name}
       />
       {label && !placeholder && (
         <label className="absolute text-sm text-mythril-700/80 duration-200 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:text-mythril-700">
