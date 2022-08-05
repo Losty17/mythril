@@ -3,4 +3,5 @@ export default interface InputProps
   label?: string;
   isError?: boolean;
   errorLabel?: string;
+  name: string;
 }

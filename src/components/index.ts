@@ -5,7 +5,7 @@ import Waves from "./Waves";
 import Container from "./Container";
 import { HorizontalDivider, VerticalDivider } from "./Divider";
 import Divider from "./Divider";
-import Form from "./Form";
+import FormContainer from "./FormContainer";
 import FloatingLabelInput from "./FloatingLabelInput";
 import Footer from "./Footer";
 import GridDashboard from "./GridDashboard";
@@ -20,7 +20,7 @@ export {
   VerticalDivider,
   Divider,
   Container,
-  Form,
+  FormContainer,
   FloatingLabelInput,
   Footer,
   GridDashboard,

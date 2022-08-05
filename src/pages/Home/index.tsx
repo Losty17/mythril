@@ -48,8 +48,8 @@ const Home = () => {
             <p>Enjoy your games like you never did</p>
             <HorizontalDivider />
             <ul className="list-disc font-light text-justify text-sm m-auto mt-5 ml-9 leading-6">
-              {items.map(({ title, text }) => (
-                <li>
+              {items.map(({ title, text }, i) => (
+                <li key={i}>
                   <b className="text-mythril-100">{title} -</b> {text}
                 </li>
               ))}
