@@ -13,7 +13,7 @@ const GridItemWrapper: React.FC<GridItemWrapperProps> = ({ item }) => {
         break;
 
       default:
-        customWidget = <div>not found</div>;
+        customWidget = <div></div>;
     }
     setWidget(customWidget);
   }, [item.type]);

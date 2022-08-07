@@ -1,64 +1,98 @@
-import { useState } from "react";
-import GridLayout from "react-grid-layout";
-import GridItemWrapper from "../GridItemWrapper";
-import { Layout } from "./interfaces";
+import React, { PropsWithChildren, useCallback, useState } from "react";
+import { Layouts, Responsive, WidthProvider } from "react-grid-layout";
+import useLocalStorage from "../../hooks/useLocalStorage";
+import { Layout } from "./interfaces.js";
+import "./styles.css";
 
-let counter = 3;
+const ResponsiveGridLayout = WidthProvider(Responsive);
 
-const GridDashboard: React.FC = () => {
-  const [widgets, setWidgets] = useState<Layout[]>([
-    { i: "widget0", x: 0, y: 0, w: 1, h: 2, static: false },
-    { i: "widget1", x: 1, y: 0, w: 1, h: 2, minW: 2, maxW: 4 },
-    { i: "widget2", x: 2, y: 0, w: 1, h: 2 },
-  ]);
+const exampleLayouts: Layouts = {
+  lg: [
+    {
+      i: "0",
+      x: 0,
+      y: 0,
+      w: 1,
+      h: 1,
+    },
+    {
+      i: "1",
+      x: 1,
+      y: 0,
+      w: 1,
+      h: 1,
+    },
+    {
+      i: "2",
+      x: 2,
+      y: 0,
+      w: 1,
+      h: 1,
+    },
+    {
+      i: "3",
+      x: 3,
+      y: 0,
+      w: 1,
+      h: 1,
+    },
+    {
+      i: "4",
+      x: 4,
+      y: 0,
+      w: 1,
+      h: 1,
+    },
+  ],
+};
 
-  const handleChangeLayout = (newLayout: GridLayout.Layout[]) => {
-    setWidgets(newLayout);
-  };
+interface DashboardProps extends PropsWithChildren {
+  onLayoutChange?: (layout: Layout) => void;
+}
 
-  const addWidget = () => {
-    setWidgets((oldWidgets) => [
-      ...oldWidgets,
-      { i: `widget${counter}`, x: counter, y: 0, w: 1, h: 2, type: "user" },
-    ]);
+const GridDashboard: React.FC<DashboardProps> = () => {
+  const ls = useLocalStorage("rgl8");
+  const originalLayouts = ls.getLayouts() || exampleLayouts || {};
+  const [layouts, setLayouts] = useState<Layouts>(originalLayouts);
+  const [activeLayout, setActiveLayout] = useState<Layout[]>(
+    originalLayouts.lg || []
+  );
 
-    counter++;
-  };
+  const handleLayoutChange = useCallback(
+    (currentLayout: Layout[], allLayouts: Layouts) => {
+      const newLayouts = { ...layouts, ...allLayouts };
+      ls.save("layouts", newLayouts);
+      setLayouts(newLayouts);
+      setActiveLayout(currentLayout);
+    },
+    [layouts, ls]
+  );
+
+  const handleBreakpointChange = useCallback(
+    (newBreakpoint: string) => {
+      setActiveLayout((oldLayout) => layouts[newBreakpoint] || oldLayout);
+    },
+    [layouts]
+  );
 
   return (
-    <div>
-      <button onClick={addWidget}>Add</button>
-      <GridLayout
-        layout={widgets}
-        cols={16}
-        rowHeight={30}
-        width={16 * 100}
-        style={{ userSelect: "none" }}
-        verticalCompact={false}
-        onLayoutChange={handleChangeLayout}
+    <div className="h-full">
+      <div id="content"></div>
+      <ResponsiveGridLayout
+        className="layout"
+        cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
+        rowHeight={103}
+        compactType={null}
+        layouts={layouts}
+        onLayoutChange={handleLayoutChange}
+        onBreakpointChange={handleBreakpointChange}
       >
-        {widgets.map((item: Layout) => (
-          <div
-            key={item.i}
-            data-grid={{
-              x: item.x,
-              y: item.y,
-              w: item.w,
-              h: item.h,
-              i: item.i,
-              minW: item.minW || 1,
-              maxW: item.maxW || Infinity,
-              minH: item.minH || 1,
-              maxH: item.maxH || Infinity,
-              isDraggable: item.isDraggable || true,
-              isResizable: item.isResizable || true,
-              isBounded: item.isBounded || false,
-            }}
-          >
-            <GridItemWrapper item={item} />
+        {activeLayout.map((item) => (
+          <div key={item.i} data-grid={item}>
+            <span className="text">{item.i}</span>
           </div>
         ))}
-      </GridLayout>
+      </ResponsiveGridLayout>
     </div>
   );
 };

@@ -1,18 +1,17 @@
 import { useField } from "@unform/core";
 import { useEffect, useRef } from "react";
+import { classNames } from "../../utils";
 import InputProps from "./props";
 
 const FloatingLabelInput: React.FC<InputProps> = ({
   label,
   children,
   placeholder,
-  isError,
-  errorLabel,
   type,
   name,
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const { fieldName, defaultValue, error, registerField } = useField(name);
+  const { fieldName, error, registerField } = useField(name);
 
   useEffect(() => {
     registerField({
@@ -23,7 +22,7 @@ const FloatingLabelInput: React.FC<InputProps> = ({
   }, [fieldName, registerField]);
 
   return (
-    <div className="relative z-0 pb-4 mb-1.5">
+    <div className={classNames("relative z-0 mb-1.5", error ? "" : "pb-6")}>
       <input
         type={type || "text"}
         className="block pt-3 pb-1.5 px-0 w-full text-sm font-medium duration-200 text-mythril-700 bg-transparent border-0 border-b-2 border-mythril-700/50 focus:border-mythril-700 appearance-none outline-none ring-0 peer"
@@ -36,12 +35,8 @@ const FloatingLabelInput: React.FC<InputProps> = ({
           {label}
         </label>
       )}
-      {error && (
-        <span className="mt-1.5 mb-0 text-xs text-red-600">{error}</span>
-      )}
-      {children && (
-        <span className="mt-1.5 mb-0 text-xs text-mythril-500">{children}</span>
-      )}
+      <span className="mt-1.5 mb-0 text-xs text-red-600">{error}</span>
+      <span className="mt-1.5 mb-0 text-xs text-mythril-500">{children}</span>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import { Container, Footer, HorizontalDivider, Navbar } from "../../components";
 import Waves from "../../components/Waves";
 import Cape from "./Cape";
+import HomeProps from "./props";
 
 const items = [
   {
@@ -25,10 +26,10 @@ const items = [
   },
 ];
 
-const Home = () => {
+const Home: React.FC<HomeProps> = ({ user }) => {
   return (
     <>
-      <Navbar />
+      <Navbar user={user} />
       <Cape />
       <Waves height={30} amplitude={20} speed={2} paused />
       <div

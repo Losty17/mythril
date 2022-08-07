@@ -15,7 +15,7 @@ const UserIcon: React.FC<UserIconProps> = ({ user }) => {
               <span className="sr-only">Open user menu</span>
               {user.avatar ? (
                 <img
-                  className="h-8 w-8 rounded-full"
+                  className="h-8 w-8 rounded-full border border-mythril-500"
                   src={user.avatar}
                   alt=""
                 />
@@ -66,7 +66,7 @@ const UserIcon: React.FC<UserIconProps> = ({ user }) => {
             <Menu.Item>
               {({ active }: MenuItemProps) => (
                 <a
-                  href="#logout"
+                  href="/logout"
                   className={classNames(
                     active ? "bg-gray-100" : "",
                     "block px-4 py-2 text-sm text-gray-700"

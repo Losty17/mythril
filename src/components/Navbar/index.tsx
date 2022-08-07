@@ -4,6 +4,7 @@ import React from "react";
 import { navigate } from "../../utils";
 import scrollTo from "../../utils/scrollTo";
 import Logo from "../Logo";
+import NavbarProps from "./props";
 import UserIcon from "./UserIcon";
 
 const navigation = [
@@ -13,7 +14,7 @@ const navigation = [
   { name: "Board", href: "app" },
 ];
 
-const Navbar = () => {
+const Navbar: React.FC<NavbarProps> = ({ user }) => {
   const handleClickMenu = (event: React.MouseEvent) => {
     event.preventDefault();
     const ref = event.currentTarget.getAttribute("href");
@@ -58,7 +59,7 @@ const Navbar = () => {
                 </div>
               </div>
               {/* Profile dropdown */}
-              <UserIcon user={undefined} />
+              <UserIcon user={user} />
             </div>
           </div>
 
