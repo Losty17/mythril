@@ -10,3 +10,10 @@ export interface RegisterData {
   password: string;
   confirm: string;
 }
+export interface User {
+  name: string;
+  email: string;
+  avatar: string;
+  token: string;
+  tokenExpiration: string;
+}

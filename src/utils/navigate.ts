@@ -1,3 +1,3 @@
-const navigate = (ref: string) => window.location.replace(ref);
+const navigate = (ref: string) => (window.location.href = ref);
 
 export default navigate;

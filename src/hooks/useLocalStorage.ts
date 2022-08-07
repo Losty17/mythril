@@ -16,7 +16,7 @@ const useLocalStorage = (namespace: string) => {
     return ls["layouts"];
   };
 
-  const save = (key: string, value: any) => {
+  const save = (key: LocalStorageKey, value: any) => {
     localStorage.setItem(
       namespace,
       JSON.stringify({

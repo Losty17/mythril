@@ -1,5 +1,5 @@
 import { Disclosure } from "@headlessui/react";
-import { MenuIcon, XIcon } from "@heroicons/react/outline";
+import { MenuIcon, XIcon } from "@heroicons/react/solid";
 import React from "react";
 import { navigate } from "../../utils";
 import scrollTo from "../../utils/scrollTo";

@@ -24,3 +24,9 @@ yarn-debug.log*
 yarn-error.log*
 
 .vercel
+
+# Storybook
+.npmrc
+.storybook
+storybook-static
+src/stories

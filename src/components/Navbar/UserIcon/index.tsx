@@ -2,26 +2,19 @@ import { Menu, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { ArrowButton } from "../../buttons";
 import UserIconProps, { MenuItemProps } from "./props";
+import { UserIcon as Icon } from "../../";
 
 const classNames = (...classes: string[]) => classes.filter(Boolean).join(" ");
 
-const UserIcon: React.FC<UserIconProps> = ({ user }) => {
+const UserIcon: React.FC<UserIconProps> = ({ user, className }) => {
   return (
-    <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+    <div className="inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:pr-0">
       <Menu as="div" className="ml-3 relative">
         <div>
           {user ? (
-            <Menu.Button className="bg-gray-800 flex text-sm rounded-full">
+            <Menu.Button className="bg-transparent flex text-sm rounded-full">
               <span className="sr-only">Open user menu</span>
-              {user.avatar ? (
-                <img
-                  className="h-8 w-8 rounded-full border border-mythril-500"
-                  src={user.avatar}
-                  alt=""
-                />
-              ) : (
-                <div className="h-8 w-8 rounded-full text-white bg-mythril-500" />
-              )}
+              <Icon user={user} />
             </Menu.Button>
           ) : (
             <ArrowButton label="Login" size="sm" href="/login" />

@@ -10,6 +10,7 @@ import FloatingLabelInput from "./FloatingLabelInput";
 import Footer from "./Footer";
 import GridDashboard from "./GridDashboard";
 import GridItemContainer from "./GridItemWrapper";
+import UserIcon from "./UserIcon";
 
 export {
   Navbar,
@@ -25,4 +26,5 @@ export {
   Footer,
   GridDashboard,
   GridItemContainer,
+  UserIcon,
 };

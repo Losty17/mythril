@@ -28,7 +28,7 @@ const items = [
 
 const Home: React.FC<HomeProps> = ({ user }) => {
   return (
-    <>
+    <div className="bg-white">
       <Navbar user={user} />
       <Cape />
       <Waves height={30} amplitude={20} speed={2} paused />
@@ -71,7 +71,7 @@ const Home: React.FC<HomeProps> = ({ user }) => {
       <Container className="h-screen"></Container>
       <Container id="pricing"></Container>
       <Footer />
-    </>
+    </div>
   );
 };
 

@@ -1,5 +1,5 @@
-import { PropsWithChildren } from "react";
-import { Layout } from "../GridDashboard/interfaces";
+import React, { PropsWithChildren } from "react";
+import { Layout } from "../../types/Board";
 
 export default interface GridItemWrapperProps extends PropsWithChildren {
   item: Layout;
