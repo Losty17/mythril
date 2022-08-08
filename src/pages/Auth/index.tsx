@@ -124,7 +124,7 @@ const Auth: React.FC<AuthProps> = () => {
   };
 
   return (
-    <div className="h-screen flex">
+    <div className="h-screen flex bg-white">
       {!user && (
         <>
           <Waves

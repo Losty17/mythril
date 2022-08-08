@@ -15,8 +15,9 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
 import { GridDashboard, Logo, UserIcon } from "../../components";
 import { useAppSelector } from "../../hooks";
-import { navigate } from "../../utils";
+import { classNames, navigate } from "../../utils";
 import BoardProps from "./props";
+import { CharactersPane } from "./panes";
 
 interface MenuButton {
   key: string;
@@ -85,8 +86,15 @@ const Board: React.FC<BoardProps> = () => {
     if (!user) navigate("/login");
   }, [user]);
 
+  const isRoot = ["/app", "/app/"].includes(path.pathname);
+
   return (
-    <div className="grid-dashboard-container min-h-screen overflow-x-hidden select-none">
+    <div
+      className={classNames(
+        "grid-dashboard-container min-h-screen overflow-x-hidden select-none h-screen",
+        !isRoot ? "overflow-y-hidden" : ""
+      )}
+    >
       <div className="w-[60px] h-full p-3 absolute text-mythril-100 flex-col justify-between hidden sm:flex">
         <div className="pt-[60px] w-7 mx-auto h-full flex flex-col">
           {sidePanelButtons.map(({ icon, href }, i) => (
@@ -108,7 +116,7 @@ const Board: React.FC<BoardProps> = () => {
           </span>
         </div>
         <div className="leading-7 text-md flex justify-evenly">
-          {["/app", "/app/"].includes(path.pathname) &&
+          {isRoot &&
             menuButtons.map(
               ({ key, iconDefault, iconActive, active, action }) => (
                 <button
@@ -125,18 +133,18 @@ const Board: React.FC<BoardProps> = () => {
         </div>
       </div>
 
-      <div className="sm:ml-[60px] ml-0">
+      <div
+        className={classNames(
+          "sm:ml-[60px] ml-0",
+          !isRoot ? "overflow-x-auto h-full" : ""
+        )}
+      >
         <Routes>
           <Route
             index
             element={<GridDashboard isEditing={editActive} isLocked={locked} />}
           />
-          <Route
-            path="/characters"
-            element={
-              <div className="text-mythril-100 p-[10px]">Characters Page</div>
-            }
-          />
+          <Route path="/characters" element={<CharactersPane />} />
           <Route
             path="/campaigns"
             element={

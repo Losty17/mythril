@@ -11,7 +11,8 @@ import Footer from "./Footer";
 import GridDashboard from "./GridDashboard";
 import GridItemContainer from "./GridItemWrapper";
 import UserIcon from "./UserIcon";
-
+import BoardContainer from "./BoardContainer";
+import CharacterCard from "./CharacterCard";
 export {
   Navbar,
   ArrowButton,
@@ -27,4 +28,6 @@ export {
   GridDashboard,
   GridItemContainer,
   UserIcon,
+  BoardContainer,
+  CharacterCard,
 };

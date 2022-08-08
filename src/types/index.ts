@@ -6,6 +6,7 @@ import {
   LocalStorageKey,
 } from "./Board";
 import { LoginData, RegisterData, User } from "./Auth";
+import { Character } from "./Characters";
 
 export type {
   LoginData,
@@ -16,4 +17,5 @@ export type {
   GridLocalStorage,
   Layout,
   Layouts,
+  Character,
 };
