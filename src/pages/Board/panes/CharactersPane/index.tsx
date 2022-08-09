@@ -53,6 +53,30 @@ const defaultCharacters: Character[] = [
     updatedAt: "",
     createdAt: "",
   },
+  {
+    id: 6,
+    name: "Character 3",
+    description: "Description 3",
+    image: "",
+    updatedAt: "",
+    createdAt: "",
+  },
+  {
+    id: 7,
+    name: "Character 3",
+    description: "Description 3",
+    image: "",
+    updatedAt: "",
+    createdAt: "",
+  },
+  {
+    id: 8,
+    name: "Character 3",
+    description: "Description 3",
+    image: "",
+    updatedAt: "",
+    createdAt: "",
+  },
 ];
 
 const CharactersPane = () => {
@@ -64,55 +88,17 @@ const CharactersPane = () => {
     console.log(containerRef);
   }, [containerRef]);
 
-  const containerOffset = containerRef.current?.offsetLeft || 0;
-
   return (
-    <BoardContainer
-      ref={containerRef}
-      className="w-fit overflow-x-visible h-full"
-    >
-      {characters.map((character) => (
-        <CharacterCard
-          key={character.id}
-          id={`character${character.id}`}
-          character={character}
-        />
-      ))}
-      <div className="absolute top-0 right-0 h-full w-12 text-mythril-500">
-        <div className="h-full flex justify-center">
-          <ChevronRightIcon
-            className="h-12 w-12 my-auto cursor-pointer"
-            onClick={() => {
-              const el = document.getElementById("character5");
-
-              el?.scrollIntoView({
-                behavior: "smooth",
-                block: "end",
-                inline: "nearest",
-              });
-              console.log(containerRef);
-            }}
+    <BoardContainer ref={containerRef} className="w-fit flex h-fit">
+      <div className="w-full inline-flex flex-wrap h-full justify-self-center ">
+        {characters.map((character) => (
+          <CharacterCard
+            key={character.id}
+            id={`character${character.id}`}
+            character={character}
           />
-        </div>
+        ))}
       </div>
-      {containerOffset > 60 && (
-        <div className="absolute top-0 left-[60px] h-full w-12 text-mythril-500">
-          <div className="h-full flex justify-center">
-            <ChevronLeftIcon
-              className="h-12 w-12 my-auto cursor-pointer"
-              onClick={() => {
-                const el = document.getElementById("character0");
-
-                el?.scrollIntoView({
-                  behavior: "smooth",
-                  block: "end",
-                  inline: "nearest",
-                });
-              }}
-            />
-          </div>
-        </div>
-      )}
     </BoardContainer>
   );
 };

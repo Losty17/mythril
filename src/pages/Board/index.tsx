@@ -95,8 +95,12 @@ const Board: React.FC<BoardProps> = () => {
         !isRoot ? "overflow-y-hidden" : ""
       )}
     >
-      <div className="w-[60px] h-full p-3 absolute text-mythril-100 flex-col justify-between hidden sm:flex">
-        <div className="pt-[60px] w-7 mx-auto h-full flex flex-col">
+      {/* Sidebar */}
+      <div className="w-[60px] h-full p-3 absolute  text-mythril-100 flex-col justify-between hidden sm:flex">
+        <div className="mb-6">
+          <Logo hideName className="h-9 m-auto" />
+        </div>
+        <div className="w-7 mx-auto h-full flex flex-col">
           {sidePanelButtons.map(({ icon, href }, i) => (
             <Link key={i} to={`/app${href}`} className="mb-6">
               {icon}
@@ -105,15 +109,10 @@ const Board: React.FC<BoardProps> = () => {
         </div>
         <TipIcon className="w-5 mx-auto" />
       </div>
-      <div className="p-3 flex flex-row justify-between text-mythril-100">
+      {/* Top Bar */}
+      <div className="p-3 flex flex-row justify-end text-mythril-100">
         <div className="sm:hidden flex w-32 h-8">
           <MenuIcon />
-        </div>
-        <div className="flex">
-          <Logo hideName className="h-8 my-auto sm:mr-2.5" />
-          <span className="text-2.5xl leading-8 font-display my-auto hidden sm:flex">
-            Welcome, {user?.name}!
-          </span>
         </div>
         <div className="leading-7 text-md flex justify-evenly">
           {isRoot &&

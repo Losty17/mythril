@@ -1,9 +1,17 @@
+import { classNames } from "../../utils";
 import CharacterCardProps from "./props";
 
-const CharacterCard: React.FC<CharacterCardProps> = ({ character, id }) => {
+const CharacterCard: React.FC<CharacterCardProps> = ({
+  character,
+  id,
+  className,
+}) => {
   return (
     <div
-      className="h-[580px] w-80 bg-mythril-100 text-mythril-900 mr-16 rounded-lg shadow-md"
+      className={classNames(
+        "h-[120px] w-[180px] bg-mythril-100 text-mythril-900 m-2 rounded-lg shadow-md",
+        className
+      )}
       id={id}
     >
       {character.name} - {character.id}
