@@ -9,7 +9,7 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
   return (
     <div
       className={classNames(
-        "h-[120px] w-[180px] bg-mythril-100 text-mythril-900 m-2 rounded-lg shadow-md",
+        "h-44 w-60 bg-mythril-300 text-mythril-900 rounded-md shadow-2xl",
         className
       )}
       id={id}

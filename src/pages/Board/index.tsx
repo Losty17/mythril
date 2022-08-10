@@ -96,7 +96,7 @@ const Board: React.FC<BoardProps> = () => {
       )}
     >
       {/* Sidebar */}
-      <div className="w-[60px] h-full p-3 absolute  text-mythril-100 flex-col justify-between hidden sm:flex">
+      <div className="w-[60px] h-full p-3 absolute z-15 text-mythril-100 flex-col justify-between hidden sm:flex">
         <div className="mb-6">
           <Logo hideName className="h-9 m-auto" />
         </div>
@@ -110,31 +110,31 @@ const Board: React.FC<BoardProps> = () => {
         <TipIcon className="w-5 mx-auto" />
       </div>
       {/* Top Bar */}
-      <div className="p-3 flex flex-row justify-end text-mythril-100">
-        <div className="sm:hidden flex w-32 h-8">
-          <MenuIcon />
+      <nav className="w-full fixed z-10 backdrop-blur-lg bg-gradient-to-bl from-mythril-700 via-transparent">
+        <div className="p-3 flex justify-end text-mythril-100">
+          <MenuIcon className="sm:hidden flex w-32 h-8" />
+          <div className="leading-7 text-md flex justify-evenly">
+            {isRoot &&
+              menuButtons.map(
+                ({ key, iconDefault, iconActive, active, action }) => (
+                  <button
+                    className="h-6 w-6 mx-2 my-auto"
+                    onClick={action}
+                    key={key}
+                    id={key}
+                  >
+                    {active ? iconActive : iconDefault}
+                  </button>
+                )
+              )}
+            <UserIcon user={user} className="ml-3" />
+          </div>
         </div>
-        <div className="leading-7 text-md flex justify-evenly">
-          {isRoot &&
-            menuButtons.map(
-              ({ key, iconDefault, iconActive, active, action }) => (
-                <button
-                  className="h-6 w-6 mx-2 my-auto"
-                  onClick={action}
-                  key={key}
-                  id={key}
-                >
-                  {active ? iconActive : iconDefault}
-                </button>
-              )
-            )}
-          <UserIcon user={user} className="ml-3" />
-        </div>
-      </div>
+      </nav>
 
       <div
         className={classNames(
-          "sm:ml-[60px] ml-0",
+          "sm:ml-[60px] ml-0 pt-[60px]",
           !isRoot ? "overflow-x-auto h-full" : ""
         )}
       >

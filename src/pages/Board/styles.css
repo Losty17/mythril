@@ -1,6 +1,6 @@
 body {
   overflow-x: hidden;
-  background: linear-gradient(45deg, #4e095c 60%, #004272 100%);
+  background: linear-gradient(15deg, #4e095c 60%, #004272 100%);
 }
 /* .grid-dashboard-container::-webkit-scrollbar {
   width: 14px;
@@ -15,6 +15,7 @@ body {
 .react-grid-layout {
   /* background: #eee; */
   /* margin-top: 10px; */
+  z-index: revert;
 }
 .layoutJSON {
   background: #ddd;
