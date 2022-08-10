@@ -4,9 +4,11 @@ import { useAppSelector } from "../../../../hooks";
 import { Character } from "../../../../types";
 
 const defaultCharacters: Character[] = Array(7).fill({
-  name: "Character 3",
-  description: "Description 3",
-  image: "",
+  name: "Lilith",
+  description: "Lorem Ipsum dolor sit",
+  class: "Wizard",
+  level: "7",
+  image: "/girl.webp",
   updatedAt: "",
   createdAt: "",
 });
