@@ -1,31 +1,19 @@
-import "./styles.css";
 import {
   CheckIcon,
   LockClosedIcon,
   LockOpenIcon,
   PencilIcon,
-  MenuIcon,
-  ViewGridIcon as BoardIcon,
-  UserGroupIcon as CharactersIcon,
-  InformationCircleIcon as TipIcon,
-  MapIcon as CampaignIcon,
-  BookOpenIcon as NotesIcon,
 } from "@heroicons/react/solid";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { Link, Route, Routes, useLocation } from "react-router-dom";
-import { GridDashboard, Logo, UserIcon } from "../../components";
+import { Route, Routes, useLocation } from "react-router-dom";
+import { GridDashboard } from "../../components";
+import { Sidebar, Topbar } from "../../components/GridComponents";
+import { MenuButton } from "../../components/GridComponents/Topbar/props";
 import { useAppSelector } from "../../hooks";
 import { classNames, navigate } from "../../utils";
-import BoardProps from "./props";
 import { CharactersPane } from "./panes";
-
-interface MenuButton {
-  key: string;
-  iconDefault: JSX.Element;
-  iconActive: JSX.Element;
-  active: boolean;
-  action: (evt: React.MouseEvent) => void;
-}
+import BoardProps from "./props";
+import "./styles.css";
 
 const Board: React.FC<BoardProps> = () => {
   const [editActive, setEditActive] = useState(false);
@@ -60,28 +48,6 @@ const Board: React.FC<BoardProps> = () => {
     [editActive, handleEditElements, locked, handleUnlockBoard]
   );
 
-  const sidePanelButtons = useMemo(
-    () => [
-      {
-        icon: <BoardIcon />,
-        href: "",
-      },
-      {
-        icon: <CharactersIcon />,
-        href: "/characters",
-      },
-      {
-        icon: <CampaignIcon />,
-        href: "/campaigns",
-      },
-      {
-        icon: <NotesIcon />,
-        href: "/notes",
-      },
-    ],
-    []
-  );
-
   useEffect(() => {
     if (!user) navigate("/login");
   }, [user]);
@@ -95,43 +61,8 @@ const Board: React.FC<BoardProps> = () => {
         !isRoot ? "overflow-y-hidden" : ""
       )}
     >
-      {/* Sidebar */}
-      <div className="w-[60px] h-full p-3 absolute z-15 text-mythril-100 flex-col justify-between hidden sm:flex">
-        <div className="mb-6">
-          <Logo hideName className="h-9 m-auto" />
-        </div>
-        <div className="w-7 mx-auto h-full flex flex-col">
-          {sidePanelButtons.map(({ icon, href }, i) => (
-            <Link key={i} to={`/app${href}`} className="mb-6">
-              {icon}
-            </Link>
-          ))}
-        </div>
-        <TipIcon className="w-5 mx-auto" />
-      </div>
-      {/* Top Bar */}
-      <nav className="w-full fixed z-10 backdrop-blur-lg bg-gradient-to-bl from-mythril-700 via-transparent">
-        <div className="p-3 flex justify-end text-mythril-100">
-          <MenuIcon className="sm:hidden flex w-32 h-8" />
-          <div className="leading-7 text-md flex justify-evenly">
-            {isRoot &&
-              menuButtons.map(
-                ({ key, iconDefault, iconActive, active, action }) => (
-                  <button
-                    className="h-6 w-6 mx-2 my-auto"
-                    onClick={action}
-                    key={key}
-                    id={key}
-                  >
-                    {active ? iconActive : iconDefault}
-                  </button>
-                )
-              )}
-            <UserIcon user={user} className="ml-3" />
-          </div>
-        </div>
-      </nav>
-
+      <Sidebar />
+      <Topbar user={user} isRoot={isRoot} buttons={menuButtons} />
       <div
         className={classNames(
           "sm:ml-[60px] ml-0 pt-[60px]",

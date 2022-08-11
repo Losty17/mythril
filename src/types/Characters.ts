@@ -2,11 +2,12 @@ interface Character {
   id: number;
   name: string;
   description: string;
+  race: string;
   class: string;
   level: string;
   image: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export type { Character };

@@ -1,27 +1,5 @@
 body {
   overflow-x: hidden;
-  background: linear-gradient(15deg, #4e095c 60%, #004272 100%);
-}
-/* .grid-dashboard-container::-webkit-scrollbar {
-  width: 14px;
-} 
-.grid-dashboard-container::-webkit-scrollbar-thumb {
-  box-shadow: inset 0 0 10px 10px #004272;
-  border: solid 5px transparent;
-}
-.grid-dashboard-container::-webkit-scrollbar-track {
-  border: solid 5px transparent;
-} */
-.react-grid-layout {
-  /* background: #eee; */
-  /* margin-top: 10px; */
-  z-index: revert;
-}
-.layoutJSON {
-  background: #ddd;
-  border: 1px solid black;
-  margin-top: 10px;
-  /* padding: 10px; */
 }
 .columns {
   -moz-columns: 120px;
