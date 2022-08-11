@@ -3,7 +3,7 @@ import { BoardContainer, CharacterCard } from "../../../../components";
 import { useAppSelector } from "../../../../hooks";
 import { Character } from "../../../../types";
 
-const defaultCharacters: Character[] = Array(1).fill({
+const defaultCharacters: Character[] = Array(42).fill({
   id: "0a67b-8asdz-12312-adas8",
   name: "Yulia Draconia",
   description: "Lorem Ipsum dolor sit",
