@@ -48,7 +48,7 @@ const classes: string[] = [
   "Ranger",
 ];
 
-const defaultCharacters: Character[] = Array(10)
+const defaultCharacters: Character[] = Array(100)
   .fill({
     id: "0a67b-8asdz-12312-adas8",
     name: "Yulia Draconia",
