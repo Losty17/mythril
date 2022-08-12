@@ -6,6 +6,7 @@ interface Character {
   class: string;
   level: string;
   image: string;
+  cover: string;
   createdAt: Date;
   updatedAt: Date;
 }

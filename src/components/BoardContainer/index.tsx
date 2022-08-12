@@ -7,13 +7,7 @@ interface BoardContainerProps extends PropsWithChildren {
 
 const BoardContainer = forwardRef<HTMLDivElement, BoardContainerProps>(
   ({ children, className }, ref) => (
-    <div
-      ref={ref}
-      className={classNames(
-        "text-mythril-100 p-[10px] flex flex-row",
-        className
-      )}
-    >
+    <div ref={ref} className={classNames("p-[10px] flex flex-row", className)}>
       {children}
     </div>
   )

@@ -14,10 +14,10 @@ const navigation = [
 
 const Topbar: React.FC<TopbarProps> = ({ buttons, isRoot, user }) => {
   return (
-    <Disclosure as="nav" className="w-full fixed z-10 bg-mythril-700">
+    <Disclosure as="nav" className="w-full h-12 fixed z-10 bg-mythril-700">
       {({ open }) => (
         <>
-          <div className="p-3 flex justify-between text-mythril-100">
+          <div className="p-1 flex justify-between text-mythril-100">
             <div className="flex flex-row h-8 w-32">
               <Disclosure.Button className="text-mythril-100 inline-flex items-center justify-center p-2 rounded-md">
                 <span className="sr-only">Open main menu</span>

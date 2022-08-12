@@ -1,3 +1,8 @@
+import {
+  HeartIcon,
+  InformationCircleIcon,
+  StarIcon,
+} from "@heroicons/react/solid";
 import { Link } from "react-router-dom";
 import { classNames } from "../../utils";
 import CharacterCardProps from "./props";
@@ -8,17 +13,32 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
   className,
 }) => {
   return (
-    <Link
+    <div
       className={classNames(
-        "h-48 sm:w-60 w-11/12 text-mythril-900 rounded-md shadow-2xl flex flex-col justify-between gap-1 hover:scale-105 transition duration-300 cursor-pointer select-none",
+        "h-48 sm:w-60 w-11/12 text-mythril-900 rounded-md shadow-2xl flex flex-col justify-between hover:scale-105 transition duration-300 cursor-pointer select-none",
         className
       )}
       id={id}
-      to={`/app/characters/${character.id}`}
     >
-      <div className="h-full flex flex-col justify-between">
+      <div
+        className="h-0 w-full text-white z-[1] flex justify-start gap-1"
+        onClick={(evt) => evt.stopPropagation()}
+      >
+        <InformationCircleIcon className="h-5 float-left mt-1 ml-1" />
+        <StarIcon className="h-5 float-left mt-1 text-white" />
+      </div>
+      <Link
+        className="h-full flex flex-col justify-between"
+        to={`/app/characters/${character.id}`}
+      >
         <div className="h-2/5">
-          <div className="h-full bg-[url('https://www.cakesnladders.co.nz/wp-content/uploads/2020/02/DnD-TPK-Banner.jpg')] bg-cover rounded-t-md">
+          <div
+            style={{
+              background: `url("${character.cover}")`,
+              backgroundSize: "cover",
+            }}
+            className="h-full rounded-t-md"
+          >
             <img
               src={character.image}
               className="rounded-full border-2 box-content border-white h-full mx-auto translate-y-7"
@@ -36,8 +56,8 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
             </div>
           </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 };
 

@@ -7,10 +7,10 @@ import {
 } from "@heroicons/react/solid";
 import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
-import { Logo } from "../..";
+import { Logo, UserIcon } from "../..";
 import SidebarProps from "./props";
 
-const Sidebar: React.FC<SidebarProps> = () => {
+const Sidebar: React.FC<SidebarProps> = ({ user }) => {
   const sidePanelButtons = useMemo(
     () => [
       {
@@ -44,7 +44,7 @@ const Sidebar: React.FC<SidebarProps> = () => {
           </Link>
         ))}
       </div>
-      <TipIcon className="w-5 mx-auto" />
+      <UserIcon user={user} />
     </div>
   );
 };

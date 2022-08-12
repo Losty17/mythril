@@ -61,11 +61,11 @@ const Board: React.FC<BoardProps> = () => {
         !isRoot ? "overflow-y-hidden" : ""
       )}
     >
-      <Sidebar />
-      <Topbar user={user} isRoot={isRoot} buttons={menuButtons} />
+      <Sidebar user={user} />
+      {/* <Topbar user={user} isRoot={isRoot} buttons={menuButtons} /> */}
       <div
         className={classNames(
-          "sm:ml-[60px] ml-0 pt-[60px]",
+          "sm:ml-[60px] ml-0",
           !isRoot ? "overflow-x-auto h-full" : ""
         )}
       >
