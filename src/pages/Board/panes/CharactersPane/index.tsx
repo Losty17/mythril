@@ -29,7 +29,7 @@ const races: string[] = [
   "Drow",
   "Variant Human",
   "Aasimar",
-  "Aaracocka",
+  "Aaracokra",
   "Kenku",
 ];
 
@@ -131,7 +131,10 @@ const CharactersPane = () => {
         {Array(lastRow)
           .fill(undefined)
           .map((u, i) => (
-            <div key={i} className="h-48 sm:w-60 w-11/12"></div>
+            <div
+              key={i}
+              className="h-48 sm:w-60 2xl:w-[18%] lg:w-[30%] md:w-[48%] w-full "
+            ></div>
           ))}
       </div>
     </BoardContainer>
