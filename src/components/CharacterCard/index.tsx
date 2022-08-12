@@ -15,7 +15,7 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
   return (
     <div
       className={classNames(
-        "h-48 sm:w-60 w-11/12 text-mythril-900 rounded-md shadow-2xl flex flex-col justify-between hover:scale-105 transition duration-300 cursor-pointer select-none",
+        "h-48 2xl:w-[18%] lg:w-[30%] md:w-[48%] w-full text-mythril-900 rounded-md shadow-2xl flex flex-col justify-between hover:scale-105 transition duration-300 cursor-pointer select-none",
         className
       )}
       id={id}
