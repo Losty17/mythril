@@ -34,10 +34,9 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
         <div className="h-2/5">
           <div
             style={{
-              background: `url("${character.cover}")`,
-              backgroundSize: "cover",
+              backgroundImage: `url("${character.cover}")`,
             }}
-            className="h-full rounded-t-md"
+            className="h-full rounded-t-md bg-cover"
           >
             <img
               src={character.image}

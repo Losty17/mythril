@@ -9,6 +9,4 @@ export interface MenuButton {
 }
 export default interface TopbarProps {
   user?: User;
-  isRoot: boolean;
-  buttons: MenuButton[];
 }

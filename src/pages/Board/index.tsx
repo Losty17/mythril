@@ -62,11 +62,11 @@ const Board: React.FC<BoardProps> = () => {
       )}
     >
       <Sidebar user={user} />
-      {/* <Topbar user={user} isRoot={isRoot} buttons={menuButtons} /> */}
+      <Topbar user={user} />
       <div
         className={classNames(
-          "sm:ml-[60px] ml-0",
-          !isRoot ? "overflow-x-auto h-full" : ""
+          "sm:ml-[60px] mt-12 sm:mt-0 ml-0",
+          !isRoot ? "overflow-auto h-full" : ""
         )}
       >
         <Routes>

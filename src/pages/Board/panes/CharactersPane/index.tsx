@@ -1,7 +1,6 @@
-import { SearchIcon } from "@heroicons/react/solid";
 import { Form } from "@unform/web";
 import _ from "lodash";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   BoardContainer,
   CharacterCard,
@@ -10,7 +9,7 @@ import {
 import { Button } from "../../../../components/buttons";
 import { useAppSelector } from "../../../../hooks";
 import { Character } from "../../../../types";
-import { getRandomInt } from "../../../../utils";
+import { getRandomInt, normalize } from "../../../../utils";
 
 const images: string[] = [
   "https://www.cakesnladders.co.nz/wp-content/uploads/2020/02/DnD-TPK-Banner.jpg",
@@ -74,8 +73,31 @@ const defaultCharacters: Character[] = Array(40)
 
 const CharactersPane = () => {
   const [characters, setCharacters] = useState(defaultCharacters);
+  const [query, setQuery] = useState("");
   const containerRef = useRef<HTMLDivElement>(null);
   const user = useAppSelector((state) => state.user.value);
+  const [lastRow, setLastRow] = useState(0);
+
+  const filteredCharacters = query
+    ? characters.filter((c) => normalize(c.race).includes(normalize(query)))
+    : characters;
+
+  useEffect(() => {
+    try {
+      const grid = Array.from(
+        (document.getElementById("characters") as HTMLElement).children
+      );
+      const baseOffset = (grid[0] as HTMLElement).offsetTop;
+      const breakIndex = grid.findIndex(
+        (item) => (item as HTMLElement).offsetTop > baseOffset
+      );
+      const numPerRow = breakIndex === -1 ? grid.length : breakIndex;
+      const mod = filteredCharacters.length % numPerRow;
+      setLastRow(mod > 0 ? numPerRow - mod : 0);
+    } catch (err) {
+      setLastRow(0);
+    }
+  }, [query]);
 
   return (
     <BoardContainer
@@ -83,26 +105,34 @@ const CharactersPane = () => {
       className="flex flex-col w-[80%] pt-10 mx-auto"
     >
       <div className="flex justify-between">
-        <Form ref={null} onSubmit={() => {}} className="flex">
+        <Form ref={null} onSubmit={() => {}} className="w-1/4 max-w-lg">
           <FloatingLabelInput
             name="search"
             placeholder="Search"
             type="text"
-            className="w-1/2 max-w-lg"
+            onChange={(evt) => setQuery(evt.currentTarget.value)}
           />
         </Form>
         <div>
-          <Button label="Add character" />
+          <Button label="+ Add" />
         </div>
       </div>
-      <div className="flex flex-wrap gap-4 h-full justify-start">
-        {defaultCharacters.map((character, i) => (
+      <div
+        className="flex flex-wrap gap-4 h-full justify-between"
+        id="characters"
+      >
+        {filteredCharacters.map((character, i) => (
           <CharacterCard
             key={i}
             id={`character${character.id}`}
             character={character}
           />
         ))}
+        {Array(lastRow)
+          .fill(undefined)
+          .map((u, i) => (
+            <div key={i} className="h-48 sm:w-60 w-11/12"></div>
+          ))}
       </div>
     </BoardContainer>
   );

@@ -10,6 +10,7 @@ const FloatingLabelInput: React.FC<InputProps> = ({
   type,
   name,
   className,
+  onChange,
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const { fieldName, error, registerField } = useField(name);
@@ -36,6 +37,7 @@ const FloatingLabelInput: React.FC<InputProps> = ({
         placeholder={placeholder || " "}
         name={name}
         ref={inputRef}
+        onChange={onChange}
       />
       {label && !placeholder && (
         <label className="absolute text-sm text-mythril-700/80 duration-200 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:text-mythril-700">
