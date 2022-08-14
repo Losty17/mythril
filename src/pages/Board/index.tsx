@@ -4,7 +4,7 @@ import { GridDashboard } from "../../components";
 import { Sidebar, Topbar } from "../../components/GridComponents";
 import { useAppSelector } from "../../hooks";
 import { classNames, navigate } from "../../utils";
-import { CharactersPane } from "./panes";
+import { CharacterList, CharacterPage } from "./panes";
 import BoardProps from "./props";
 import "./styles.css";
 
@@ -67,7 +67,8 @@ const Board: React.FC<BoardProps> = () => {
             index
             element={<GridDashboard isEditing={editActive} isLocked={locked} />}
           />
-          <Route path="/characters" element={<CharactersPane />} />
+          <Route path="/characters" element={<CharacterList />} />
+          <Route path="/characters/:id" element={<CharacterPage />} />
           <Route
             path="/campaigns"
             element={

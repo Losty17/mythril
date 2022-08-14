@@ -1,10 +1,10 @@
 interface Character {
-  id: number;
+  id: string;
   name: string;
   description: string;
   race: string;
   class: string;
-  level: string;
+  level: number;
   image: string;
   cover: string;
   createdAt: Date;

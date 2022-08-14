@@ -3,16 +3,17 @@ import { useEffect, useRef, useState } from "react";
 import useSWR from "swr";
 import {
   BoardContainer,
-  CharacterCard,
+  // CharacterCard,
   FloatingLabelInput,
   LoadingAnimation,
 } from "../../../../components";
 import { Button } from "../../../../components/buttons";
+import CharacterCard from "../../../../components/v2/cards/CharacterCard";
 import { useAppSelector } from "../../../../hooks";
 import { Character } from "../../../../types";
 import { normalize } from "../../../../utils";
 
-const CharactersPane = () => {
+const CharacterList = () => {
   const [characters, setCharacters] = useState<Character[]>([]);
   const [query, setQuery] = useState("");
   const containerRef = useRef<HTMLDivElement>(null);
@@ -76,7 +77,7 @@ const CharactersPane = () => {
         {filteredCharacters.map((character, i) => (
           <CharacterCard
             key={i}
-            id={`character${character.id}`}
+            // id={`character${character.id}`}
             character={character}
           />
         ))}
@@ -93,4 +94,4 @@ const CharactersPane = () => {
   );
 };
 
-export default CharactersPane;
+export default CharacterList;

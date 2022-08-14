@@ -1,3 +1,4 @@
-import CharactersPane from "./CharactersPane";
+import CharacterList from "./CharacterList";
+import CharacterPage from "./CharacterPage";
 
-export { CharactersPane };
+export { CharacterList, CharacterPage };

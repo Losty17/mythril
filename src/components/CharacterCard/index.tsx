@@ -11,17 +11,14 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
   return (
     <div
       className={classNames(
-        "h-48 2xl:w-[18%] lg:w-[30%] md:w-[48%] w-full text-mythril-900 rounded-md shadow-2xl flex flex-col justify-between hover:scale-105 transition duration-300 cursor-pointer select-none",
+        "h-48 2xl:w-[18%] lg:w-[30%] md:w-[48%] w-full text-mythril-900 rounded-md shadow-back flex flex-col justify-between hover:scale-105 transition duration-300 cursor-pointer select-none",
         className
       )}
       id={id}
     >
-      <div
-        className="h-0 w-full text-white z-[1] flex justify-start gap-1"
-        onClick={(evt) => evt.stopPropagation()}
-      >
-        <InformationCircleIcon className="h-5 float-left mt-1 ml-1" />
-        <StarIcon className="h-5 float-left mt-1 text-white" />
+      <div className="h-0 w-full text-white z-[1] flex justify-start">
+        <InformationCircleIcon className="h-5 mt-1 mx-1" />
+        <StarIcon className="h-5 mt-1" />
       </div>
       <Link
         className="h-full flex flex-col justify-between"
