@@ -1,6 +1,5 @@
 import {
   BookOpenIcon as NotesIcon,
-  InformationCircleIcon as TipIcon,
   MapIcon as CampaignIcon,
   UserGroupIcon as CharactersIcon,
   ViewGridIcon as BoardIcon,
@@ -33,7 +32,7 @@ const Sidebar: React.FC<SidebarProps> = ({ user }) => {
     []
   );
   return (
-    <div className="w-[60px] h-full p-3 absolute z-20 text-mythril-100 bg-mythril-700 flex-col justify-between hidden sm:flex fixed">
+    <div className="w-[60px] h-full p-3 absolute z-20 text-mythril-100 bg-mythril-700 flex-col justify-between hidden sm:flex">
       <div className="mb-6">
         <Logo hideName className="h-9 m-auto" />
       </div>

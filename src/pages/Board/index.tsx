@@ -1,14 +1,7 @@
-import {
-  CheckIcon,
-  LockClosedIcon,
-  LockOpenIcon,
-  PencilIcon,
-} from "@heroicons/react/solid";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { GridDashboard } from "../../components";
 import { Sidebar, Topbar } from "../../components/GridComponents";
-import { MenuButton } from "../../components/GridComponents/Topbar/props";
 import { useAppSelector } from "../../hooks";
 import { classNames, navigate } from "../../utils";
 import { CharactersPane } from "./panes";
@@ -21,32 +14,32 @@ const Board: React.FC<BoardProps> = () => {
   const user = useAppSelector((state) => state.user.value);
   const path = useLocation();
 
-  const handleEditElements = useCallback((evt: React.MouseEvent) => {
-    setEditActive((active) => !active);
-  }, []);
-  const handleUnlockBoard = useCallback((evt: React.MouseEvent) => {
-    setLocked((locked) => !locked);
-  }, []);
+  // const handleEditElements = useCallback((evt: React.MouseEvent) => {
+  //   setEditActive((active) => !active);
+  // }, []);
+  // const handleUnlockBoard = useCallback((evt: React.MouseEvent) => {
+  //   setLocked((locked) => !locked);
+  // }, []);
 
-  const menuButtons: MenuButton[] = useMemo(
-    () => [
-      {
-        key: "editElements",
-        iconDefault: <PencilIcon />,
-        iconActive: <CheckIcon />,
-        active: editActive,
-        action: handleEditElements,
-      },
-      {
-        key: "unlockBoard",
-        iconDefault: <LockOpenIcon />,
-        iconActive: <LockClosedIcon />,
-        active: locked,
-        action: handleUnlockBoard,
-      },
-    ],
-    [editActive, handleEditElements, locked, handleUnlockBoard]
-  );
+  // const menuButtons: MenuButton[] = useMemo(
+  //   () => [
+  //     {
+  //       key: "editElements",
+  //       iconDefault: <PencilIcon />,
+  //       iconActive: <CheckIcon />,
+  //       active: editActive,
+  //       action: handleEditElements,
+  //     },
+  //     {
+  //       key: "unlockBoard",
+  //       iconDefault: <LockOpenIcon />,
+  //       iconActive: <LockClosedIcon />,
+  //       active: locked,
+  //       action: handleUnlockBoard,
+  //     },
+  //   ],
+  //   [editActive, handleEditElements, locked, handleUnlockBoard]
+  // );
 
   useEffect(() => {
     if (!user) navigate("/login");

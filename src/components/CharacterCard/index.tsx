@@ -1,8 +1,4 @@
-import {
-  HeartIcon,
-  InformationCircleIcon,
-  StarIcon,
-} from "@heroicons/react/solid";
+import { InformationCircleIcon, StarIcon } from "@heroicons/react/solid";
 import { Link } from "react-router-dom";
 import { classNames } from "../../utils";
 import CharacterCardProps from "./props";
@@ -41,6 +37,7 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
             <img
               src={character.image}
               className="rounded-full border-2 box-content border-white h-full mx-auto translate-y-7"
+              alt=""
             />
           </div>
           <div className="flex flex-col text-center mt-8">

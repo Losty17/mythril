@@ -13,6 +13,8 @@ import GridItemContainer from "./GridItemWrapper";
 import UserIcon from "./UserIcon";
 import BoardContainer from "./BoardContainer";
 import CharacterCard from "./CharacterCard";
+import LoadingAnimation from "./LoadingAnimation";
+
 export {
   Navbar,
   ArrowButton,
@@ -30,4 +32,5 @@ export {
   UserIcon,
   BoardContainer,
   CharacterCard,
+  LoadingAnimation,
 };
