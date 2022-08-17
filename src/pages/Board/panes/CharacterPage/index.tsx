@@ -1,13 +1,10 @@
+import { Box, Divider, Typography } from "@mui/material";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
-import {
-  BoardContainer,
-  Divider,
-  LoadingAnimation,
-} from "../../../../components";
+import { BoardContainer, LoadingAnimation } from "../../../../components";
+import CharacterAvatar from "../../../../components/v2/atoms/CharacterAvatar";
 import { Character } from "../../../../types";
-import { HomeIcon } from "@heroicons/react/solid";
 
 const CharacterPage = () => {
   const { id } = useParams();
@@ -23,29 +20,32 @@ const CharacterPage = () => {
   if (!character) return <LoadingAnimation />;
   else
     return (
-      <BoardContainer className="h-full">
-        <div className="flex flex-col w-1/6 text-center mx-6">
-          <img
-            src={character.image}
-            alt=""
-            className="rounded-full border-2 border-mythril-500 mb-3"
+      <div className="h-full">
+        <Box
+          sx={{
+            width: "314px",
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <CharacterAvatar
+            character={character}
+            size="250px"
+            sx={{ margin: "32px", marginBottom: "16px" }}
           />
-          <span className="text-2xl">{character.name}</span>
-          <span>{character.race}</span>
-          <span>
-            {character.class} Lvl. {character.level}
-          </span>
-        </div>
-        <Divider vertical className="mx-0 mr-6 bg-mythril-500" />
-        <div className="w-full">
-          <div className="flex flex-row h-8 gap-12 text-mythril-500 border-b-2 border-mythril-500">
-            <HomeIcon />
-            <HomeIcon />
-            <HomeIcon />
-            <HomeIcon />
-          </div>
-        </div>
-      </BoardContainer>
+          <Typography variant="h5">{character.name}</Typography>
+          <Typography variant="subtitle2" color="gray">
+            {character.race} · {character.class}
+          </Typography>
+          <Divider
+            sx={{ width: "40%", marginTop: "16px" }}
+            color="black"
+            variant="middle"
+          />
+        </Box>
+      </div>
     );
 };
 

@@ -33,13 +33,16 @@ const CharacterCard: React.FC<CharacterCardProps> = ({ character }) => {
 
   return (
     <Card sx={cardSizes} style={{ height: "192px" }} elevation={8}>
-      <CardActionArea sx={{ height: "100%" }} disableRipple>
+      <CardActionArea
+        sx={{ height: "100%", margin: 0, padding: 0 }}
+        disableRipple
+        href={`/app/characters/${character.id}`}
+      >
         <CardMedia
           component="span"
           sx={{
             background: `url(${character.cover})`,
             backgroundSize: "cover",
-            height: "80px",
           }}
         >
           <Avatar src={character.image} sx={avatarStyle} />
