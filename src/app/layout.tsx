@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: PropsWithChildren) => (
   <html lang="en" data-theme="light">
-    <body className="antialiased">
+    <body className="antialiased bg-base-300">
       <AuthProvider>{children}</AuthProvider>
     </body>
   </html>
