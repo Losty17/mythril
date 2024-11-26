@@ -9,6 +9,7 @@ import {
   MapIcon,
   RectangleGroupIcon,
   UserGroupIcon,
+  EllipsisVerticalIcon,
 } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import NavbarButton from "../NavbarButton";
@@ -18,8 +19,7 @@ const Sidebar = () => {
 
   return (
     <aside
-      data-expanded={expanded}
-      className="bg-base-200 p-[9px] flex flex-col gap-2 w-full max-w-16 data-[expanded='true']:max-w-64 box-border"
+      className="bg-base-200 flex flex-col gap-2 p-[11px] box-border"
     >
       <NavbarButton
         onClick={() => {}}
@@ -47,7 +47,7 @@ const Sidebar = () => {
           icon={<MapIcon className="size-6" />}
         />
       </div>
-      <div className="flex flex-col gap-2 py-4">
+      <div className="flex flex-col gap-2">
         <NavbarButton
           onClick={() => setExpanded(!expanded)}
           label="Collapse"
@@ -70,14 +70,27 @@ const Sidebar = () => {
       </div>
       <div
         data-expanded={expanded}
-        className="flex flex-col gap-2 mb-8 bg-transparent data-[expanded='true']:bg-base-100 rounded-lg"
+        className="flex flex-row gap-2 items-center py-4 w-max m-auto data-[expanded='true']:px-4 bg-transparent data-[expanded='true']:bg-base-100 rounded-lg"
       >
         <img
+          data-expanded={expanded}
           src="https://avatars.githubusercontent.com/u/45098519?v=4"
           alt=""
-          width={32}
-          height={32}
-        />
+          width={48}
+          height={48}
+          className="rounded-lg size-10"
+        /> 
+        {expanded && (
+          <>
+            <div className="flex flex-col">
+              Hi, Vinícius!
+              <span className="text-xs text-neutral-500">
+                vinikappke@gmail.com
+              </span>
+            </div>
+            <EllipsisVerticalIcon />
+          </>
+        )}
       </div>
     </aside>
   );

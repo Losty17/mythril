@@ -4,12 +4,12 @@ import { PropsWithChildren } from "react";
 import AuthProvider from "../providers/AuthProvider";
 
 export const metadata: Metadata = {
-  title: "Jobly",
-  description: "Sua plataforma para divulgar seu trabalho!",
+  title: "Mythril",
+  description: "Your all-in-one D&D manager!",
 };
 
 const RootLayout = ({ children }: PropsWithChildren) => (
-  <html lang="en" data-theme="light">
+  <html lang="en" data-theme="mythril">
     <body className="antialiased bg-base-300">
       <AuthProvider>{children}</AuthProvider>
     </body>

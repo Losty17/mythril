@@ -10,7 +10,7 @@ const NavbarButton = ({
 }: NavbarButtonProps) => {
   return (
     <button
-      className="btn btn-ghost btn-md p-2 justify-start gap-4"
+      className="btn btn-ghost btn-md p-2 min-w-max w-full justify-start gap-4"
       onClick={onClick}
     >
       {!!icon ? icon : expanded ? expandedIcon : collapsedIcon}
